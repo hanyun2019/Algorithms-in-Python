@@ -11,7 +11,7 @@ def disk_usage(path):
             childpath = os.path.join(path, filename)    # compose full path to child
             total += disk_usage(childpath)              # add child's usage to total
 
-    print('{0:<7'.format(total), path)                  # descriptive output (optinal)
+    print('{0:<7}'.format(total), path)                  # descriptive output (optinal)
     return total
 
 if __name__ == '__main__':
