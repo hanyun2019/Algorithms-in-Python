@@ -23,4 +23,5 @@ for i in range(30):
     num_called.append(good_fibonacci.count)
 
 if __name__ == '__main__':
-    print(num_called)
+    for i in num_called:
+        print(i)
