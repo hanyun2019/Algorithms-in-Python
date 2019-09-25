@@ -1,4 +1,4 @@
-# Kelvin modified on Sep 20, 2019
+# Kelvin modified on Sep 25, 2019
 #
 # If a recursive call starts at most one other, 
 # we call this a linear recursion.
@@ -19,6 +19,33 @@ def reverse(S, start, stop):
         S[start], S[stop-1] = S[stop-1], S[start]
         reverse(S, start+1, stop-1) 
 
+
+def counter(func):
+    func.count += 1
+
+# Bad Recursive Algorithms for Computing Powers
+def bad_power(x, n):
+        """Compute the value x**n for integer n."""
+        counter(bad_power)
+        if n == 0:
+                return 1
+        else:
+                return x * bad_power(x, n-1)
+
+# Good Recursive Algorithms for Computing Powers
+def good_power(x, n):
+        """Compute the value x**n for integer n."""
+        counter(good_power)
+        if n == 0:
+                return 1
+        else:
+                partial = good_power(x, n//2)
+                result = partial * partial
+                if n%2 == 1:
+                        result *= x
+                return result
+
+
 if __name__ == '__main__':
 
         data1 = [4, 3, 6, 2, 8]
@@ -32,8 +59,14 @@ if __name__ == '__main__':
 
         reverse(data2, 0, 6)
         print('reverse data: ', data2)
-        
 
+        bad_power.count = 0
+        print(bad_power(2, 40))
+        print("Bad computing powers recursive algorithm # Called: ", bad_power.count)
+
+        good_power.count = 0
+        print(good_power(2, 40))
+        print("Good computing powers recursive algorithm # Called: ", good_power.count)
 
         
 
